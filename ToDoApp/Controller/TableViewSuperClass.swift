@@ -14,10 +14,14 @@ class TableViewSuperClass<T: Object>: UIViewController, UITableViewDataSource, U
     var entity = T()
     var entityArray : Results<T>?
     var notificationToken : NotificationToken?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        reloadData()
+        //reloadData()
+        loadData()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         notificationToken = RealmService.shared.realm.observe { (notification, realm) in
             self.reloadData()
         }
@@ -27,13 +31,13 @@ class TableViewSuperClass<T: Object>: UIViewController, UITableViewDataSource, U
         notificationToken?.invalidate()
     }
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        //entityArray = RealmService.shared.realm.objects(T.self)
-//        reloadData()
-//    }
+    //    override func viewWillAppear(_ animated: Bool) {
+    //        //entityArray = RealmService.shared.realm.objects(T.self)
+    //        reloadData()
+    //    }
     
     required init?(coder aDecoder: NSCoder) {
-       super.init(coder: aDecoder)
+        super.init(coder: aDecoder)
     }
     
     init? (coder decoder: NSCoder, _ entity: T) {
@@ -47,8 +51,8 @@ class TableViewSuperClass<T: Object>: UIViewController, UITableViewDataSource, U
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath) as! CustomCellTableViewCell
-//        cell.layer.borderWidth = 0.2
-//        cell.layer.borderColor = UIColor.black.cgColor
+        //        cell.layer.borderWidth = 0.2
+        //        cell.layer.borderColor = UIColor.black.cgColor
         return cell
     }
     
@@ -57,6 +61,10 @@ class TableViewSuperClass<T: Object>: UIViewController, UITableViewDataSource, U
     }
     
     func reloadData(){
+        
+    }
+    
+    func loadData(){
         
     }
     

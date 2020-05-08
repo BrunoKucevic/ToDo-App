@@ -11,7 +11,6 @@ import RealmSwift
 
 class ToDoItemsViewController: TableViewSuperClass<Item> {
     
-    let realm = try! Realm()
     var linkingCategory : Category?{
         didSet{
             loadItems();

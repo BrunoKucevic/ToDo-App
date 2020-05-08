@@ -40,10 +40,14 @@ class ToDoCategoryViewController: TableViewSuperClass<Category> {
     }
     
     override func reloadData(){
-        entityArray = RealmService.shared.realm.objects(Category.self)
         self.tableView.reloadData()
-        self.tableView.rowHeight = 80
+        
         //self.tableView.backgroundColor = UIColor.gray
+    }
+    
+    override func loadData(){
+        entityArray = RealmService.shared.realm.objects(Category.self)
+        self.tableView.rowHeight = 80
     }
     
     override func didSelectRowAtLogic(_ indexpath : IndexPath){
