@@ -41,7 +41,6 @@ class ToDoCategoryViewController: TableViewSuperClass<Category> {
     
     override func reloadData(){
         self.tableView.reloadData()
-        
         //self.tableView.backgroundColor = UIColor.gray
     }
     

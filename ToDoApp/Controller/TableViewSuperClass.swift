@@ -17,7 +17,6 @@ class TableViewSuperClass<T: Object>: UIViewController, UITableViewDataSource, U
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //reloadData()
         loadData()
     }
     
@@ -30,11 +29,6 @@ class TableViewSuperClass<T: Object>: UIViewController, UITableViewDataSource, U
     override func viewWillDisappear(_ animated: Bool) {
         notificationToken?.invalidate()
     }
-    
-    //    override func viewWillAppear(_ animated: Bool) {
-    //        //entityArray = RealmService.shared.realm.objects(T.self)
-    //        reloadData()
-    //    }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
