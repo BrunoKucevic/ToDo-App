@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ToDoCategoryViewController: TableViewSuperClass<Category> {
+class ToDoCategoryViewController: TableViewSuperClass<Category, Item> {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -20,8 +20,18 @@ class ToDoCategoryViewController: TableViewSuperClass<Category> {
         //self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
     }
     
-    @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
-        /*TODO: open alert controller*/
+//    @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
+//        /*TODO: open alert controller*/
+//        self.showAlertController(title: "Pero", message: "Message") { (string) in
+//            guard let str = string else {return}
+//            let category = Category()
+//            category.name = str
+//            category.color = "Black"
+//            RealmService.shared.save(category)
+//        }
+//    }
+    
+    override func buttonTapped() {
         self.showAlertController(title: "Pero", message: "Message") { (string) in
             guard let str = string else {return}
             let category = Category()
@@ -59,7 +69,7 @@ class ToDoCategoryViewController: TableViewSuperClass<Category> {
         
         guard let currentIndex = tableView.indexPathForSelectedRow else {return}
         
-        destinationVC.linkingCategory = entityArray?[currentIndex.row]
+        destinationVC.parentEntity = entityArray?[currentIndex.row]
     }
 }
 

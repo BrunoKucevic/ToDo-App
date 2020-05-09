@@ -9,15 +9,27 @@
 import Foundation
 import RealmSwift
 
-class TableViewSuperClass<T: Object>: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class TableViewSuperClass<T: Object, U: Object>: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var entity = T()
+    //var secondEntity = U?.self
     var entityArray : Results<T>?
     var notificationToken : NotificationToken?
+    
+    var parentEntity : U?{
+        didSet{
+            loadData()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         loadData()
+        setupAddButton()
+    }
+
+    func setupAddButton(){
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(buttonTapped))
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -63,6 +75,10 @@ class TableViewSuperClass<T: Object>: UIViewController, UITableViewDataSource, U
     }
     
     func didSelectRowAtLogic(_ indexPath : IndexPath){
+        
+    }
+    
+    @objc func buttonTapped(){
         
     }
 }
